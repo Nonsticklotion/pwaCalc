@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/* ชื่อสีที่ใช้ใน class ของ Tailwind (bg-paper, text-ink ฯลฯ) ผูกกับตัวแปรด้านล่าง */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-water: var(--water);
+  --color-on-water: var(--on-water);
+  --color-water-soft: var(--water-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --font-sans: 'IBM Plex Sans Thai', 'Noto Sans Thai', 'Leelawadee UI', Tahoma, sans-serif;
+}
+
+/* โหมดมืด (ค่าเริ่มต้น) — เปลี่ยนสีได้ที่นี่ */
+:root {
+  --ink: #e2ecf2;
+  --muted: #8ea6b5;
+  --paper: #0b161e;
+  --surface: #12212b;
+  --line: #233848;
+  --water: #4fb3e0;
+  --on-water: #04202e;
+  --water-soft: #113246;
+  --warn: #f2b860;
+  --warn-soft: #33250e;
+  color-scheme: dark;
+}
+
+/* โหมดสว่าง (กดปุ่มสลับ) และใช้ตอนพิมพ์เสมอ */
+:root[data-theme='light'] {
+  --ink: #10283a;
+  --muted: #587386;
+  --paper: #f3f7f9;
+  --surface: #ffffff;
+  --line: #d7e3ea;
+  --water: #0a6b96;
+  --on-water: #ffffff;
+  --water-soft: #e4f1f7;
+  --warn: #8a5300;
+  --warn-soft: #fff4e0;
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--paper);
+}
+
+/* ซ่อนลูกศรเพิ่ม/ลดในช่องตัวเลข */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* หน้าพิมพ์ / PDF: A4 หน้าเดียว พื้นขาวเสมอ ไม่ว่าจะอยู่โหมดไหน */
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+@media print {
+  :root {
+    --ink: #10283a;
+    --muted: #587386;
+    --paper: #ffffff;
+    --surface: #ffffff;
+    --line: #d7e3ea;
+    --water: #0a6b96;
+    --on-water: #ffffff;
+    --water-soft: #e4f1f7;
+    --warn: #8a5300;
+    --warn-soft: #fff4e0;
+    color-scheme: light;
+  }
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: white;
+    font-size: 13px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
